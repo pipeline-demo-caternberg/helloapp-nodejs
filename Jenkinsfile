@@ -5,7 +5,6 @@ pipeline {
         skipDefaultCheckout true
     }
     stages {
-        stages {
             stage('Nodejs Setup') {
                 agent {
                     kubernetes {
@@ -24,5 +23,4 @@ pipeline {
                 }
             }
         }
-    }
-}
+ }
