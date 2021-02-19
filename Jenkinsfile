@@ -2,7 +2,7 @@ pipeline {
   agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
+   // skipDefaultCheckout true
   }
   stages {
     stage('Web Tests') {
@@ -11,10 +11,6 @@ pipeline {
           label 'nodejs'
           yamlFile 'nodejs-pod.yaml'
         }
-      }
-      when {
-        beforeAgent true
-        branch 'master'
       }
       stages {
         stage('Nodejs Setup') {
@@ -52,10 +48,7 @@ pipeline {
           yamlFile 'nodejs-pod.yaml'
         }
       }
-      when {
-        beforeAgent true
-        branch 'master'
-      }
+
       steps {
         checkout scm
         echo "TODO - build and push image"
