@@ -8,7 +8,6 @@ pipeline {
     stage('Web Tests') {
       agent {
         kubernetes {
-          label 'nodejs-devoptics'
           yamlFile 'nodejs-pod.yaml'
         }
       }
@@ -48,7 +47,6 @@ pipeline {
     stage('Build and Push Image') {
       agent {
         kubernetes {
-          label 'nodejs'
           yamlFile 'nodejs-pod.yaml'
         }
       }
