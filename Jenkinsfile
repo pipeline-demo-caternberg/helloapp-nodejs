@@ -2,7 +2,7 @@ pipeline {
     agent none
     options {
         buildDiscarder(logRotator(numToKeepStr: '2'))
-        skipDefaultCheckout true
+        //skipDefaultCheckout true
     }
     stages {
             stage('Nodejs Setup') {
@@ -13,7 +13,7 @@ pipeline {
                     }
                 }
                 steps {
-                    //  checkout scm
+                    checkout scm
                     container('nodejs') {
                         sh """
                 npm i -S express pug
