@@ -8,17 +8,18 @@ pipeline {
     stage('Web Tests') {
       agent {
         kubernetes {
+          label 'nodejs'
           yamlFile 'nodejs-pod.yaml'
         }
       }
       when {
         beforeAgent true
-        branch 'development'
+        branch 'master'
       }
       stages {
         stage('Nodejs Setup') {
           steps {
-            checkout scm
+          //  checkout scm
             container('nodejs') {
               sh """
                 npm i -S express pug
@@ -47,6 +48,7 @@ pipeline {
     stage('Build and Push Image') {
       agent {
         kubernetes {
+          label 'nodejs'
           yamlFile 'nodejs-pod.yaml'
         }
       }
