@@ -28,6 +28,8 @@ pipeline {
           steps {
             container('testcafe') {
               sh '/opt/testcafe/docker/testcafe-docker.sh "chromium --no-sandbox" tests/*.js -r xunit:res.xml'
+              publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usage'
+
             }
           }   
         }
@@ -41,18 +43,6 @@ pipeline {
         }
       } 
     }
-    stage('Build and Push Image') {
-      agent {
-        kubernetes {
-          label 'nodejs'
-          yamlFile 'nodejs-pod.yaml'
-        }
-      }
 
-      steps {
-        checkout scm
-        echo "TODO - build and push image"
-      }
-    }
   }
 }
