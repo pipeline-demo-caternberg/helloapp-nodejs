@@ -24,15 +24,15 @@ pipeline {
             }
           }   
         }
-        stage('Testcafe') {
+/*        stage('Testcafe') {
           steps {
             container('testcafe') {
               sh '/opt/testcafe/docker/testcafe-docker.sh "chromium --no-sandbox" tests/*.js -r xunit:res.xml'
-              publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usage'
+              //publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usage'
 
             }
           }   
-        }
+        }*/
       }  
       post {
         success {
